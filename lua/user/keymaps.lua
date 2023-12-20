@@ -26,7 +26,8 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 keymap("n", "<leader>e", ":Lex 30<cr>", opts)
-
+vim.keymap.set("n","<leader>fe",vim.cmd.Ex)
+vim.keymap.set('n', '<C-t>', vim.cmd.tabnew)
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
 keymap("n", "<C-Down>", ":resize -2<CR>", opts)
