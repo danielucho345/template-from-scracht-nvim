@@ -2,7 +2,8 @@
 local servers = {
   "lua_ls",
 	"pyright",
-	"jsonls",
+  "rust_analyzer",
+  "jsonls"
 }
 
 local settings = {
@@ -26,6 +27,7 @@ require("mason-lspconfig").setup({
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
+  vim.notify('error on require lspconfig')
 	return
 end
 
@@ -33,17 +35,23 @@ local opts = {}
 
 for _, server in pairs(servers) do
 	opts = {
-		on_attach = require("after.plugin.lsp.handlers").on_attach,
-		capabilities = require("after.plugin.lsp.handlers").capabilities,
+		on_attach = require("user.lsp.handlers").on_attach,
+		capabilities = require("user.lsp.handlers").capabilities,
 	}
 
 	server = vim.split(server, "@")[1]
-print(now)
 
-	local require_ok, conf_opts = pcall(require, "after.plugin.settings." .. server)
+	local require_ok, conf_opts = pcall(require, "user.lsp.settings." .. server)
 	if require_ok then
 		opts = vim.tbl_deep_extend("force", conf_opts, opts)
+  else
+      vim.notify('error on require server function')
 	end
 
 	lspconfig[server].setup(opts)
 end
+
+--local capabilities = vim.lsp.protocol.make_client_capabilities()
+--capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+
