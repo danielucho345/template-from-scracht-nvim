@@ -38,6 +38,7 @@ for _, server in pairs(servers) do
 	}
 
 	server = vim.split(server, "@")[1]
+print(now)
 
 	local require_ok, conf_opts = pcall(require, "after.plugin.settings." .. server)
 	if require_ok then

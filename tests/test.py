@@ -1,11 +1,14 @@
-import datetime 
-
-now = datetime.datetime.now()
+import datetime
 
 
 
+class Test(object):
+    def __init__(self):
+        self.name = 'my name'
 
+    def name(self):
+        return self.name
+    pass
 
-print(now)
-
-
+print(
+        Test.name)
