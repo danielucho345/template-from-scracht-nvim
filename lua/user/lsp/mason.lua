@@ -1,12 +1,13 @@
-local servers = {
+  local servers = {
 	"lua_ls",
-	-- "cssls",
-	-- "html",
-	-- "tsserver",
+	"cssls",
+	"html",
+	"tsserver",
 	"pyright",
 	-- "bashls",
 	"jsonls",
-	-- "yamlls",
+	"yamlls",
+  'rust_analyzer'
 }
 
 local settings = {
