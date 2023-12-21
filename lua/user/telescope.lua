@@ -40,7 +40,7 @@ telescope.setup {
         ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
         ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
         ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-        ["<C-l>"] = actions.complete_tag,
+        --["<C-l>"] = actions.complete_tag,
         ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
       },
 
@@ -94,3 +94,11 @@ telescope.setup {
     -- please take a look at the readme of the extension you want to configure
   },
 }
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
+vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+
+vim.keymap.set('n','<leader>ps',function()
+	builtin.grep_string({search=vim.fn.input('Grep -->')})
+end)
